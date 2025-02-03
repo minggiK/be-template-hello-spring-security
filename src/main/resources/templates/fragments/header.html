@@ -1,9 +1,34 @@
-﻿<html xmlns:th="http://www.thymeleaf.org">
-    <body>
-        <div align="right" th:fragment="header">
-            <a href="/members/register" class="text-decoration-none">회원가입</a> |
-            <a href="/auths/login-form" class="text-decoration-none">로그인</a> |
-            <a href="/members/my-page" class="text-decoration-none">마이페이지</a>
-        </div>
-    </body>
+﻿<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--    <body>-->
+<!--        <div align="right" th:fragment="header">-->
+<!--            <a href="/members/register" class="text-decoration-none">회원가입</a> |-->
+<!--            <a href="/auths/login-form" class="text-decoration-none">로그인</a> |-->
+<!--            <a href="/members/my-page" class="text-decoration-none">마이페이지</a>-->
+<!--        </div>-->
+<!--    </body>-->
+<!--</html>-->
+<!--로그인 시 [회원가입 / 로그인] 없어지고 [로그아웃] 구현 : -->
+<!--인증이 끝나면 스프링에는 씨큐리티 컨텍스? 어쩌고에는 인증자의 ID,PW를 갖고있고 이걸 묶어놓은 객체를 관리해-->
+
+<html xmlns:th="<http://www.thymeleaf.org>"
+      xmlns:sec="<http://www.thymeleaf.org/thymeleaf-extras-springsecurity5>"> <!-- (1) -->
+<body>
+<div align="right" th:fragment="header">
+<!--    회원가입은 항상 출력되도록 설정-->
+    <a href="/members/register" class="text-decoration-none">회원가입</a> |
+<!--   로그인 되었을 때, -->
+    <span sec:authorize="isAuthenticated()"> <!-- (2) -->
+<!--               User 일때만 마이페이지 출력 -->
+                <span sec:authorize="hasRole('USER')">  <!-- (3) -->
+                    <a href="/members/my-page" class="text-decoration-none">마이페이지</a> |
+                </span>
+                <a href="/logout" class="text-decoration-none">로그아웃</a>  <!-- (4) -->
+                <span th:text="${#authentication.name}">홍길동</span>님  <!-- (5) -->
+            </span>
+<!--    로그인중이 아닐 때는, [회원가입|로그인] 만 화면에 출력 -->
+    <span sec:authorize="!isAuthenticated()"> <!-- (6) -->
+                <a href="/auths/login-form" class="text-decoration-none">로그인</a>
+            </span>
+</div>
+</body>
 </html>

@@ -8,8 +8,11 @@
 </head>
 <body>
     <div class="container" layout:fragment="content">
-        <form action="/auths/login" method="post">
-        <!--<form action="/process_login" method="post">-->
+<!--        <form action="/auths/login" method="post">-->
+        <form action="/process_login" method="post">
+            <div class="row alert alert-danger center" role = "alert" th:if="${param.error != null}">
+                <div>로그인 인증에 실패했습니다!</div>
+            </div>
             <div class="row">
                 <div class="col-xs-2">
                     <input type="email" name="username"  class="form-control" placeholder="Email" />
@@ -20,7 +23,7 @@
                     <input type="password" name="password"  class="form-control" placeholder="Password" />
                 </div>
             </div>
-
+<!--            버튼을 누르면 폼태그가 알아서 실행된다 -->
             <button class="btn btn-outline-secondary" style="margin-top: 20px">로그인</button>
         </form>
         <div style="margin-top: 20px">

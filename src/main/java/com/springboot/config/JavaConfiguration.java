@@ -5,10 +5,11 @@ import com.springboot.member.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class JavaConfiguration {
-    @Bean
-    public MemberService inMemoryMemberService() {
-        return new InMemoryMemberService();
-    }
-}
+//@Configuration
+//public class JavaConfiguration {
+//    //어떤 passwordEncoder를 쓸지
+//    @Bean
+//    public MemberService inMemoryMemberService() {
+//        return new InMemoryMemberService();
+//    }
+//}

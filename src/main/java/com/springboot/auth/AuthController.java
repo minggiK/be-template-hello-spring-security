@@ -5,12 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//RestController : controller + ResponseBoy(응답데이터를 JSON 으로 직렬화
+    // resource 에서 찾아요 -> templates - Login.html로 이동
 @Controller
 @RequestMapping("/auths")
 public class AuthController {
     @GetMapping("/login-form")
     public String loginForm() {
         return "login";
+    }
+
+
+    @GetMapping("/access-denied")
+    public String accessDinied() {
+        //문자열 기반의 HTml 파일을 찾아서 반환
+        return "access-denied";
     }
 
 

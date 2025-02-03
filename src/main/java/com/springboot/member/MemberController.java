@@ -27,7 +27,7 @@ public class MemberController {
         memberService.createMember(member);
 
         System.out.println("Member Registration Successfully");
-        return "login";
+        return "login";  // 회원가입 성공했을 때 login.html로 보내는 거야
     }
 
     @GetMapping("/my-page")
